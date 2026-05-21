@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head><script src="/blog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=blog/livereload" data-no-instant defer></script>
+  
+    <title>Keyclean :: Kimtalmo</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="🧼 KeyClean (키클린) KeyClean은 맥북 키보드를 청소할 때 키 입력을 일시적으로 차단해주는 가벼운 macOS용 토이 프로젝트입니다.
+이 프로젝트는 Gemini CLI와 대화하며 함께 코드를 짜고 에러를 고쳐나간 협업의 결과물입니다.
+🚀 주요 기능 청소 모드 (Key Block): 활성화 시 모든 키보드 입력을 차단하여 청소 중 오타나 원치 않는 명령 실행을 방지합니다. (F열 및 미디어 키 포함) 쉬운 토글: Left Shift &#43; Right Shift &#43; Enter를 동시에 눌러 모드를 즉시 켜고 끌 수 있습니다. 자동 해제 (Safe Timeout): 모드 활성화 후 1분이 지나면 자동으로 차단이 해제되어 시스템을 다시 사용할 수 있습니다. 🛠 설치 및 실행 방법 Homebrew (추천) 아래 명령어를 통해 간편하게 설치할 수 있습니다:
+" />
+<meta name="keywords" content="" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="http://localhost:1313/blog/showcase/keyclean/" />
+
+
+
+
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/blog/css/buttons.min.86f6b4c106b6c6eb690ae5203d36b442c1f66f718ff4e8164fa86cf6c61ad641.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/blog/css/code.min.c4581949edab7810737609fc5568852bcd908945f14561e366dcd2300a370545.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/blog/css/fonts.min.5bb7ed13e1d00d8ff39ea84af26737007eb5051b157b86fc24487c94f3dc8bbe.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/blog/css/footer.min.eb8dfc2c6a7eafa36cd3ba92d63e69e849e2200e0002a228d137f236b09ecd75.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/blog/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/blog/css/header.min.75c7eb0e2872d95ff48109c6647d0223a38db52e2561dd87966eb5fc7c6bdac6.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/blog/css/main.min.36833afd348409fc6c3d09d0897c5833d9d5bf1ff31f5e60ea3ee42ce2b1268c.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/blog/css/menu.min.3c17467ebeb3d38663dce68f71f519901124fa5cbb4519b2fb0667a21e9aca39.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/blog/css/pagination.min.bbb986dbce00a5ce5aca0504b7925fc1c581992a4bf57f163e5d69cc1db7d836.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/blog/css/post.min.e6dddd258e64c83e05cec0cd49c05216742d42fc8ecbfbe6b67083412b609bd3.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/blog/css/syntax.min.a2cc694a9b481f15d41722bffc2cc54eea4c4f74fd9072b0b33253604c22606e.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/blog/css/terminal.min.e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/blog/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
+
+
+
+
+
+
+
+<link rel="shortcut icon" href="http://localhost:1313/blog/favicon.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/blog/apple-touch-icon.png">
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="ko" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Keyclean">
+<meta property="og:description" content="🧼 KeyClean (키클린) KeyClean은 맥북 키보드를 청소할 때 키 입력을 일시적으로 차단해주는 가벼운 macOS용 토이 프로젝트입니다.
+이 프로젝트는 Gemini CLI와 대화하며 함께 코드를 짜고 에러를 고쳐나간 협업의 결과물입니다.
+🚀 주요 기능 청소 모드 (Key Block): 활성화 시 모든 키보드 입력을 차단하여 청소 중 오타나 원치 않는 명령 실행을 방지합니다. (F열 및 미디어 키 포함) 쉬운 토글: Left Shift &#43; Right Shift &#43; Enter를 동시에 눌러 모드를 즉시 켜고 끌 수 있습니다. 자동 해제 (Safe Timeout): 모드 활성화 후 1분이 지나면 자동으로 차단이 해제되어 시스템을 다시 사용할 수 있습니다. 🛠 설치 및 실행 방법 Homebrew (추천) 아래 명령어를 통해 간편하게 설치할 수 있습니다:
+" />
+<meta property="og:url" content="http://localhost:1313/blog/showcase/keyclean/" />
+<meta property="og:site_name" content="Kimtalmo" />
+
+  <meta property="og:image" content="http://localhost:1313/blog/og-image.png">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2026-05-21 14:41:49 &#43;0900 KST" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+
+
+<div class="container center">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/blog">
+  <div class="logo">
+    Kimtalmo
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/blog/posts">Posts</a></li>
+        
+      
+        
+          <li><a href="/blog/showcase">Showcase</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/blog/posts" >Posts</a></li>
+        
+      
+        
+          <li><a href="/blog/showcase" >Showcase</a></li>
+        
+      
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="http://localhost:1313/blog/showcase/keyclean/">Keyclean</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2026-05-21</time></div>
+
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <h1 id="-keyclean-키클린">🧼 KeyClean (키클린)<a href="#-keyclean-키클린" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<p><strong>KeyClean</strong>은 맥북 키보드를 청소할 때 키 입력을 일시적으로 차단해주는 가벼운 macOS용 토이 프로젝트입니다.<br>
+이 프로젝트는 <strong>Gemini CLI</strong>와 대화하며 함께 코드를 짜고 에러를 고쳐나간 협업의 결과물입니다.</p>
+<h2 id="-주요-기능">🚀 주요 기능<a href="#-주요-기능" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<ul>
+<li><strong>청소 모드 (Key Block)</strong>: 활성화 시 모든 키보드 입력을 차단하여 청소 중 오타나 원치 않는 명령 실행을 방지합니다. (F열 및 미디어 키 포함)</li>
+<li><strong>쉬운 토글</strong>: <code>Left Shift</code> + <code>Right Shift</code> + <code>Enter</code>를 동시에 눌러 모드를 즉시 켜고 끌 수 있습니다.</li>
+<li><strong>자동 해제 (Safe Timeout)</strong>: 모드 활성화 후 1분이 지나면 자동으로 차단이 해제되어 시스템을 다시 사용할 수 있습니다.</li>
+</ul>
+<h2 id="-설치-및-실행-방법">🛠 설치 및 실행 방법<a href="#-설치-및-실행-방법" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<h3 id="homebrew-추천">Homebrew (추천)<a href="#homebrew-추천" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p>아래 명령어를 통해 간편하게 설치할 수 있습니다:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">brew install 4BMtolobPL/homebrew-tap/keyclean
+</span></span></code></pre></div><h3 id="직접-빌드-및-실행">직접 빌드 및 실행<a href="#직접-빌드-및-실행" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<ol>
+<li><a href="https://www.rust-lang.org/tools/install">Rust</a> (Cargo 패키지 매니저 포함)가 설치되어 있어야 합니다.</li>
+<li>저장소를 클론하거나 코드를 다운로드합니다.</li>
+<li>터미널에서 프로젝트 디렉토리로 이동합니다.</li>
+<li>아래 명령어를 실행합니다.
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cargo run
+</span></span></code></pre></div></li>
+</ol>
+<h3 id="-중요-권한-설정">⚠️ 중요: 권한 설정<a href="#-중요-권한-설정" class="hanchor" ariaLabel="Anchor">#</a> </h3>
+<p>이 프로그램은 시스템 전체의 이벤트를 감시하고 차단해야 하므로 <strong>&lsquo;손쉬운 사용(Accessibility)&rsquo;</strong> 권한이 필요합니다.</p>
+<ol>
+<li><code>cargo run</code> 실행 시 권한 요청 팝업이 뜨면 <strong>시스템 설정 열기</strong>를 누릅니다.</li>
+<li><strong>개인정보 보호 및 보안 &gt; 손쉬운 사용</strong>에서 사용 중인 터미널(예: Terminal, iTerm2, VS Code 등)을 허용으로 체크해 주세요.</li>
+</ol>
+<h2 id="-사용법">⌨️ 사용법<a href="#-사용법" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<ul>
+<li><strong>활성화</strong>: <code>왼쪽 Shift</code> + <code>오른쪽 Shift</code> + <code>Enter</code>를 동시에 꾹 누릅니다. 터미널에 <code>🧹 Key Clean Mode: ENABLED</code> 메시지가 뜹니다.</li>
+<li><strong>비활성화</strong>: 동일한 키 조합을 다시 누르거나 1분 동안 기다립니다. 터미널에 <code>✅ Key Clean Mode: DISABLED</code> 메시지가 뜹니다.</li>
+</ul>
+<h2 id="-gemini-cli와의-협업">🤖 Gemini CLI와의 협업<a href="#-gemini-cli와의-협업" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>이 프로젝트는 AI 에이전트인 <strong>Gemini CLI</strong>와 함께 개발되었습니다.</p>
+<ul>
+<li><strong>코드 구현</strong>: macOS의 <code>Core Graphics</code> 및 <code>Core Foundation</code> 프레임워크를 활용한 로우레벨 이벤트 핸들링 구현.</li>
+<li><strong>트러블슈팅</strong>: <code>FlagsChanged</code> 이벤트 누락으로 인한 시프트 키 인식 문제 해결 및 라이브러리 버전업에 따른 API 변경점 수정.</li>
+<li><strong>기능 확장</strong>: 단순 차단에서 시작해 토글 로직, 타이머 기능, F-열 차단까지 점진적으로 기능을 추가했습니다.</li>
+</ul>
+<h2 id="-라이선스">📜 라이선스<a href="#-라이선스" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>개인적인 용도의 토이 프로젝트이므로 자유롭게 수정 및 배포가 가능합니다. (MIT License 권장)</p>
+<hr>
+<p><em>Clean your keyboard safely!</em> 🧼⌨️</p>
+
+      </div></div>
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2026 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/blog/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

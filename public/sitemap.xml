@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>http://localhost:1313/blog/showcase/keyclean/</loc>
+    <lastmod>2026-05-21T14:41:49+09:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/</loc>
+    <lastmod>2026-05-21T14:41:49+09:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/showcase/</loc>
+    <lastmod>2026-05-21T14:41:49+09:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/showcase/kommit/</loc>
+    <lastmod>2026-05-21T14:38:26+09:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/showcase/kirc-rs/</loc>
+    <lastmod>2026-05-21T14:33:23+09:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/posts/my-first-post/</loc>
+    <lastmod>2026-05-21T10:26:15+09:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/posts/</loc>
+    <lastmod>2026-05-21T10:26:15+09:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/categories/</loc>
+  </url><url>
+    <loc>http://localhost:1313/blog/tags/</loc>
+  </url>
+</urlset>
