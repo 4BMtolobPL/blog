@@ -11,7 +11,6 @@ description = "Git 사용할때 자주 사용하는 명령어 모음"
 showFullContent = false
 readingTime = false
 hideComments = false
-draft = true
 +++
 
 1. ## 원격에서 삭제된 브랜치가 로컬 log에 뜰때
