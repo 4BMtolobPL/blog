@@ -41,3 +41,21 @@ git remote add origin <url>
 # 원격 레포지토리 변경
 git remote set-url origin <new-url>
 ```
+
+3. ## 첫 커밋을 포함한 squash
+일반적인 squash는 아래와 같다.
+```bash
+# HEAD~2까지의 커밋을 squash
+git rebase -i HEAD~2
+```
+
+squash 대상에 첫 커밋(root)가 포함되면 'fatal: invalid upstream HEAD~2'과 같은 에러가 발생한다.
+첫 커밋을 squash 하려면 아래와 같이 `--root` 옵션을 사용한다.
+```bash
+git rebase -i --root
+```
+
+그 후 push시엔 force push한다.
+```bash
+git push origin <branch-name> --force
+```
