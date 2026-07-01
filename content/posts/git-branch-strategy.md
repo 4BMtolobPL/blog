@@ -13,33 +13,33 @@ readingTime = false
 hideComments = false
 +++
 
-# Custom Gitlab Flow Strategy
+# Custom GitLab Flow Strategy
 
-사실 혼자 개발하는 경우 Git을 단순히 버전관리 용도로 사용해도 좋다. 오히려 브랜치를 나누고 개발하는게 더 복잡하고 불필요한 경우도 있다고 생각한다. 하지만 나는 브랜치를 나누고 개발하는게 이슈 트래킹, CI/CD, 레지스트리 최적화 등의 장점이 있다고 생각하여 혼자 개발할때도 브랜치를 나누고 개발한다.
+사실 혼자 개발하는 경우 Git을 단순히 버전 관리 용도로만 사용해도 충분하다. 오히려 브랜치를 나누어 개발하는 것이 더 복잡하고 불필요하게 느껴질 때도 있다. 그럼에도 불구하고 내가 1인 개발 시에도 브랜치를 나누는 이유는 이슈 트래킹, CI/CD 파이프라인 연동, 컨테이너 레지스트리 최적화 등 관리 효율성 측면에서 얻을 수 있는 장점이 크기 때문이다.
 
 ## 1. Git 브랜치 전략
 
-브랜치를 나누고 관리하는 전략은 대표적으로 3가지가 있다. Git Flow, Github Flow, Gitlab Flow.
+대표적인 Git 브랜치 관리 전략으로는 **Git Flow**, **GitHub Flow**, **GitLab Flow** 세 가지가 있다.
 
-1. Git Flow
+### 1. Git Flow
 
-master와 develop브랜치를 평행하게 가져가고, feature 브랜치는 develop에서 분기하 다시 develop로 병합한다. 새 버전 배포를 위해 develop 브랜치에서 release 브랜치를 분기하고, release 브랜치에서 충분한 테스트와 버그픽스 후 master 브랜치로 병합한다. master에 병합된 커밋은 태그로 버저닝 하며, 실제 배포가 일어난다.
+`master`와 `develop` 브랜치를 중심 축으로 삼고 평행하게 유지하는 방식이다. 새로운 기능은 `develop` 브랜치에서 `feature` 브랜치를 분기하여 개발한 뒤 다시 `develop`에 병합한다. 배포 시점이 되면 `develop` 브랜치에서 `release` 브랜치를 분기하여 테스트와 버그 수정을 거친 후, 최종적으로 `master` 브랜치에 병합한다. `master` 브랜치에 병합된 커밋은 태그를 달아 버저닝을 하고 실제 프로덕션 배포로 이어진다.
 
-정교하고 좋은 전략이지만 혼자 개발하는 경우엔 master, develop, release 브랜치에 추가로 feature와 hotfix 브랜치까지 너무 브랜치가 많고 관리하기 불편할 수 있다. 또한 배포된 코드에서 버그가 발생하는 경우 master에서 브랜치를 분기하여(hotfix) 오류를 수정하고 다시 master에 병합하게 되는데, 이때 이 커밋을 develop 브랜치에 병합(backport)하지 않으면 다음 배포때 같은 버그가 또 생기는 경우가 생길 수 있다.
+이 전략은 체계적이고 대규모 협업에 좋지만, 혼자 개발할 때는 관리해야 할 브랜치(`master`, `develop`, `release`, `feature`, `hotfix` 등)가 너무 많아 다소 번거로울 수 있다. 또한 배포된 코드에서 버그가 발생하여 `master`에서 `hotfix` 브랜치를 분기해 수정한 경우, 이 커밋을 `develop` 브랜치에도 역방향 병합(Backport)해야 한다. 만약 이 과정을 누락하면 다음 배포 때 동일한 버그가 다시 발생하는 위험이 있다.
 
-2. Github Flow
+### 2. GitHub Flow
 
-과감하게 기본 브랜치를 master 하나만 유지하고, master에서 분기한 feature 브랜치에서 개발 후 pull request를 이용해 다시 master로 병합하는 방식이다. master에 커밋이 모이고 일반적으로 여기서 바로 릴리즈 한다. 따라서 pull request시에 코드 리뷰를 꼼꼼하게 하고 자동화된 코드 검증으로 잘못된 코드가 master에 병합되지 않게 주의를 기울여야 한다.
+기본 브랜치로 `master` 하나만 유지하는 매우 단순한 방식이다. `master`에서 분기한 `feature` 브랜치에서 기능을 개발하고, Pull Request(PR)를 통해 다시 `master`로 병합한다. 모든 변경 사항이 `master`로 직접 합쳐지며, 합쳐지는 즉시 프로덕션 배포가 이루어지는 것이 일반적이다. 따라서 잘못된 코드가 배포되는 것을 막기 위해 PR 단계에서 철저한 코드 리뷰와 CI를 통한 자동화 검증이 필수적이다.
 
-3. Gitlab Flow
+### 3. GitLab Flow
 
-Git Flow와 유사하지만 조금 더 간단한 대안이다. master에서 분기해 feature를 개발하며, 다시 master로 병합한다. 릴리즈 시에는 master에서 production 브랜치로 커밋들을 병합하고 배포한다. 또한 필요에 따라 master와 production 브랜치 사이에 pre-production 브랜치를 두어 테스트를 위한 시간을 확보하고, QA를 위한 배포를 할 수 있다. 릴리즈된 브랜치를 유지하고 버그픽스 커밋만 체리픽하여 여러 버전을 동시에 관리 할 수도 있다.
+Git Flow의 복잡함을 덜어낸 실용적인 대안이다. 기본적으로 `master` 브랜치에서 `feature` 브랜치를 분기해 개발한 후 `master`에 병합한다. 배포할 때는 `master` 브랜치에서 배포용 브랜치(`production` 등)로 병합하여 릴리즈를 진행한다. 필요한 경우 `master`와 `production` 사이에 `pre-production` 브랜치를 두어 스테이징 환경에서 QA 및 테스트를 진행할 수도 있다.
 
-Git Flow와의 주요 차이점은 Upstream first 방식을 사용한다는 점이다. 릴리즈에서 버그를 발견한 경우 Git Flow와 다르게 master에서 버그를 수정한 후 production 브랜치에서 해당 커밋을 체리픽한다. 위에서 설명한 pre-production 방식과 여러 버전을 동시에 관리하는 버전 또한 master 브랜치에서 커밋 후 각각의 브랜치로 머지 또는 체리픽 되는 방식이다. 즉 오리지널(Upstream, 여기서는 master) 브랜치에 먼저(first) 반영하고 나머지 브랜치는 오리지널로부터 가져오는 방식이다. Upstream first 방식은 여러 장점이 있지만 개인적으로는 잘만 사용한다면 merge시 충돌이 적다는 장점이 좋다고 느껴졌다.
+Git Flow와의 가장 큰 차이점은 **Upstream First** 원칙을 따른다는 점이다. 프로덕션 환경(릴리즈 버전)에서 버그가 발견되면 `master` 브랜치에서 먼저 버그를 수정한 뒤, 해당 커밋을 `production` 브랜치로 체리픽(Cherry-pick)하거나 머지한다. 즉, 항상 오리지널 브랜치(Upstream, 여기서는 `master`)에 변경 사항을 먼저 반영하고 다른 브랜치로 전파하는 구조다. 이 방식은 흐름이 단방향으로 유지되므로 브랜치 간의 병합 충돌(Conflict)이 발생할 확률을 크게 낮춰준다.
 
 ## 2. 나의 브랜치 전략
 
-나는 혼자 개발할때 Gitlab flow를 단순화한 전략을 사용한다.
+나는 1인 프로젝트를 진행할 때 GitLab Flow를 더욱 직관적으로 단순화한 전략을 사용하고 있다.
 
 ```mermaid
 %%{ init: { "theme": "base", "gitGraph": { "mainBranchName": "master", "mainBranchOrder": 2 } } }%%
@@ -49,7 +49,7 @@ gitGraph
   
   branch "production" order: 1
   checkout "production"
-  commit "master" id: "v1.0.0 Release"
+  commit id: "v1.0.0 Release"
   
   checkout "master"
   branch "feature/some-feature-implementation" order: 3
@@ -75,16 +75,18 @@ gitGraph
   commit id: "Feature Work 4"
 ```
 
-1. master 브랜치 1개를 default 브랜치로 설정하고 해당 브랜치를 Upstream으로써 다룬다.
-2. feature 브랜치는 master로부터 분기하되 이름을 feature/* 방식으로 지어 구분하기 편하게 하였다. 개발이 완료되면 반드시 리베이스하고, 로컬에서 병합하거나 웹 UI에서 Merge request를 보낸다. 이때 fast forward merge를 사용하지 않는다.
-3. 릴리즈 시에는 로컬에서 직접 master에서 production으로 병합하고 배포 버전을 태깅해서 push하는 방식으로 사용한다.
-4. 단순 버그는 issue 등록 후 feature와 똑같이 다룬다.
-5. hotfix는 별도의 브랜치를 만들지 않고 master에서 직접 오류 수정 후 production으로 cherry-pick 한다.
+1. `master` 브랜치를 기본(default) 브랜치로 설정하고, 모든 개발의 기준이 되는 Upstream으로 다룬다.
+2. 기능 개발은 `master`에서 분기한 `feature/*` 브랜치에서 진행하여 브랜치 구분을 명확히 한다. 개발 완료 후에는 로컬에서 대상 브랜치로 리베이스(Rebase)를 마친 뒤, 웹 UI에서 Merge Request(MR)를 보내거나 로컬에서 병합한다. 이때 히스토리 추적을 위해 Fast-forward 머지는 사용하지 않는다 (Non-Fast-Forward Merge).
+3. 배포(릴리즈) 시에는 로컬에서 `master` 브랜치를 `production` 브랜치로 병합하고, 배포 버전에 맞는 태그(Tag)를 생성한 뒤 원격에 Push한다.
+4. 일반적인 버그 수정은 이슈(Issue) 등록 후 `feature` 브랜치와 동일한 프로세스로 진행한다.
+5. 긴급 버그 수정(Hotfix)의 경우, 별도의 브랜치를 분기하지 않고 `master`에서 직접 수정한 후 `production` 브랜치로 체리픽(Cherry-pick)하여 반영한다.
 
-1인 개발 규모에 맞게 staging(pre-production) 브랜치 없지 master와 production 2개만 가져가는 방식을 선택했다. 버그 픽스는 이슈를 남겨 이슈 트래킹이 가능하게 하고 머지 커밋을 반드시 남겨 추후에 로그를 볼때 조금 더 구분이 편하도록 하였다. hotfix는 production으론 체리픽되고 기존 feature브랜치는 병합시 리베이스 할때 적용된다.
+이처럼 1인 개발 규모에 맞게 복잡한 `staging(pre-production)` 브랜치 없이 `master`와 `production` 2개 브랜치만으로 운영한다. 버그 픽스는 이슈 트래킹을 연동해 기록을 남기고, 병합 시에는 머지 커밋(Merge Commit)을 남겨 나중에 로그를 확인하기 쉽게 구성했다. 또한 `hotfix`는 `production`으로 즉시 체리픽되고, 진행 중인 `feature` 브랜치들은 향후 리베이스를 진행할 때 자연스럽게 수정 사항을 흡수하게 된다.
 
-## 3. 마무리
+## 3. 마치며
 
-이 브랜치 전략을 사용하면서 Gitlab의 CI/CD 기능을 사용해서 일반 브랜치는 자동 테스트, production 브랜치는 docker image 빌드 후 Gitlab container registry 등록이 자동으로 되게 하였다. Git이 협업을 위한 툴이라는 이미지가 크지만 엄밀하게는 버전 관리 시스템이고 잘 활용한다면 혼자 개발할때도 이점이 아주 크다고 생각한다. 또한 요즘처럼 AI를 활용한 개발을 할 때 브랜치를 나눠 서로 다른 context를 가져가거나 작업이 길어질때 하나의 체크포인트처럼 활용하기도 한다.
+이 브랜치 전략을 도입하면서 GitLab CI/CD 기능을 연계해 사용하고 있다. `feature` 브랜치는 코드 푸시 시 자동 테스트를 수행하고, `production` 브랜치는 Docker 이미지 빌드 후 GitLab Container Registry에 자동 등록되도록 파이프라인을 구축했다.
 
-최근에는 Jujutsu라는 Git 호환 버전관리 시스템이 주목받고 있는것 같다. Git을 사용하던 레포지토리에서 그대로 사용할 수 있으며 더 단순하고 사용하기 쉬우면서도 강력하다고 한다. 새로 배우고 싶은게 많지만 Jujutsu는 그중에서도 가장 배우고 싶은 것중 하나이다! 지금 학습하고 있는게 끝나면 잠깐 시간을 내어 익혀봐야겠다.
+흔히 Git을 협업용 도구로만 생각하기 쉽지만, 본질은 버전 관리 시스템인 만큼 혼자 개발할 때도 규칙을 정해 활용하면 큰 이점을 얻을 수 있다. 특히 최근처럼 AI 어시스턴트를 활용해 개발할 때는 브랜치를 쪼개어 작업 컨텍스트를 분리하거나, 장기 작업 시 안전한 체크포인트로 삼기에 매우 유용하다.
+
+최근에는 Git 호환 버전 관리 시스템인 **Jujutsu(jj)**가 주목받고 있는 듯하다. 기존 Git 리포지토리 환경에서 그대로 사용할 수 있으면서도, 한결 직관적이고 강력한 기능을 제공한다. 앞으로 배울 것들이 많지만 Jujutsu는 그중에서도 우선순위가 높다. 현재 진행 중인 학습이 마무리되면 시간을 내어 꼭 배워볼 생각이다.
