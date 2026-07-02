@@ -109,3 +109,7 @@ pagination.pagerSize = 5
 [caches]
   [caches.images]
     dir = ':cacheDir/images'
+
+[services]
+    [services.googleAnalytics]
+    id = 'G-85WM6GWLZ7'
