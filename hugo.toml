@@ -105,6 +105,10 @@ pagination.pagerSize = 5
           identifier = "showcase"
           name = "Showcase"
           url = "/showcase"
+        [[languages.ko.menu.main]]
+          identifier = "translate"
+          name = "Translate"
+          url = "/translate"
 
 [caches]
   [caches.images]
